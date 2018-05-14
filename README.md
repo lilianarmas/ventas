@@ -1,6 +1,6 @@
 # Sistema de Ventas
 
-_Sistema de Ventas que administra Clientes, Productos, Existencia y Ventas._
+_Sistema que administra Clientes, Productos, Existencia y Ventas._
 
 ### Pre-requisitos 📋
 
