@@ -22,6 +22,11 @@ http://localhost:3000
 npm install
 ```
 
+## Construido con 🛠️
+
+* [React](https://reactjs.org/)
+* [Bootstrap](https://getbootstrap.com/)
+
 ## Opciones ⚙️
 
 ### Clientes
