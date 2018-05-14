@@ -1,6 +1,6 @@
 # Sistema de Ventas
 
-_Sistema que administra Clientes, Productos, Existencia y Ventas._
+_Sistema con propósitos de DESARROLLO que administra Clientes, Productos, Existencia y Ventas._
 
 ### Pre-requisitos 📋
 
@@ -8,6 +8,12 @@ _API de ventas_
 
 ```
 http://localhost:4300/api
+```
+
+_Puerto_
+
+```
+http://localhost:3000
 ```
 
 ### Instalación 🔧
