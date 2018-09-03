@@ -14,7 +14,8 @@ class Productos extends Component {
 	    	contenido : () => {
 			},
 			entradas: [],
-			readonly : false
+			readonly : false,
+			tituloModal: ''
 		}
 	    this.formulario = this.formulario.bind(this);
 	    this.cargarAgregarProducto = this.cargarAgregarProducto.bind(this);
@@ -51,9 +52,9 @@ class Productos extends Component {
 	  formatter: (cell, row) => {
 	  	return (
 	    	<div>
-	    		<button type="button" className="btn btn-secondary btn-sm" alt="Modificar" title="Modificar" data-toggle="modal" data-target="#ventanaModal" onClick={(e) => this.cargarModificarProducto(row, e)}><i className="fa fa-edit"></i></button>&nbsp;
-				<button type="button" className="btn btn-secondary btn-sm" alt="Eliminar" title="Eliminar" onClick={(e) => this.eliminarProducto(row, e)}><i className="fa fa-trash" ></i></button>&nbsp;
-				<button type="button" className="btn btn-secondary btn-sm" alt="Ver Entradas a Inventario" title="Ver Entradas a Inventario" data-toggle="modal" data-target="#ventanaModal" onClick={(e) => this.cargarEntradasProducto(row, e)}><i className="fa fa-list-alt"></i></button>
+	    		<button type='button' className='btn btn-secondary btn-sm' alt='Modificar' title='Modificar' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarModificarProducto(row, e)}><i className='fa fa-edit'></i></button>&nbsp;
+				<button type='button' className='btn btn-secondary btn-sm' alt='Eliminar' title='Eliminar' onClick={(e) => this.eliminarProducto(row, e)}><i className='fa fa-trash' ></i></button>&nbsp;
+				<button type='button' className='btn btn-secondary btn-sm' alt='Ver Entradas a Inventario' title='Ver Entradas a Inventario' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarEntradasProducto(row, e)}><i className='fa fa-list-alt'></i></button>
 		    </div>
 	    );
 	  }
@@ -151,43 +152,40 @@ class Productos extends Component {
 
 	formulario = () => (
 	<div>
-		<div className="modal-body">		        
+		<div className='modal-body'>		        
 			<form>
 					      	
-				<div className="form-group row">
-					<input type="hidden" id="id_producto"/>
-				    <label htmlFor="descripcion" className="col-sm-2 col-form-label">Descripción</label>
-				    <div className="col-sm-10">
-				      	<input type="text" id="descripcion" aria-describedby="Descripción" placeholder="Descripción" maxLength="300" size="40"/>
-				   		<small id="descripcionMensaje" className="form-text text-danger"></small>
+				<div className='form-group row'>
+					<input type='hidden' id='id_producto'/>
+				    <label htmlFor='descripcion' className='col-sm-2 col-form-label'>Descripción</label>
+				    <div className='col-sm-10'>
+				      	<input type='text' id='descripcion' aria-describedby='Descripción' placeholder='Descripción' maxLength='300' size='40'/>
+				   		<small id='descripcionMensaje' className='form-text text-danger'></small>
 				    </div>
-				    <label htmlFor="precio" className="col-sm-2 col-form-label">Precio</label>
-				    <div className="col-sm-10">
-				      	<input type="text" id="precio" aria-describedby="Precio" placeholder="Precio" maxLength="15" size="40"/>
-				   		<small id="precioMensaje" className="form-text text-danger"></small>
+				    <label htmlFor='precio' className='col-sm-2 col-form-label'>Precio</label>
+				    <div className='col-sm-10'>
+				      	<input type='text' id='precio' aria-describedby='Precio' placeholder='Precio' maxLength='15' size='40'/>
+				   		<small id='precioMensaje' className='form-text text-danger'></small>
 				    </div>
-				    <label htmlFor="existencia" className="col-sm-2 col-form-label">Existencia</label>
-				    <div className="col-sm-10">
-				      	<input type="text" id="existencia" aria-describedby="Existencia Inicial" placeholder="Existencia Inicial" maxLength="10" size="40" readOnly={this.state.readonly} />
-				   		<small id="existenciaMensaje" className="form-text text-danger"></small>
+				    <label htmlFor='existencia' className='col-sm-2 col-form-label'>Existencia</label>
+				    <div className='col-sm-10'>
+				      	<input type='text' id='existencia' aria-describedby='Existencia Inicial' placeholder='Existencia Inicial' maxLength='10' size='40' readOnly={this.state.readonly} />
+				   		<small id='existenciaMensaje' className='form-text text-danger'></small>
 				    </div>
 
 
-				    <label htmlFor="agregar_existencia" className="col-sm-2 col-form-label">Entrada</label>
-				    <div className="col-sm-10">
-				      	<input type="text" id="agregar_existencia" aria-describedby="Agregar a existencia" placeholder="Agregar a existencia" maxLength="10" size="40" readOnly={!this.state.readonly} />
+				    <label htmlFor='agregar_existencia' className='col-sm-2 col-form-label'>Entrada</label>
+				    <div className='col-sm-10'>
+				      	<input type='text' id='agregar_existencia' aria-describedby='Agregar a existencia' placeholder='Agregar a existencia' maxLength='10' size='40' readOnly={!this.state.readonly} />
 				    </div>
-				  	
 
 				</div>
 
-
-
 			</form>
 		</div>
-		<div className="modal-footer">
-			<button type="button" className="btn btn-primary" onClick={this.guardarProducto.bind(this)}>Guardar</button>
-			<button type="button" className="btn btn-secondary" data-dismiss="modal" id="cerrar">Cancelar</button>
+		<div className='modal-footer'>
+			<button type='button' className='btn btn-primary' onClick={this.guardarProducto.bind(this)}>Guardar</button>
+			<button type='button' className='btn btn-secondary' data-dismiss='modal' id='cerrar'>Cancelar</button>
 		</div>	
 	</div>
 	);
@@ -200,22 +198,22 @@ class Productos extends Component {
 		var existencia = parseInt(document.getElementById('existencia').value,10);
 		var agregarExistencia = parseInt(document.getElementById('agregar_existencia').value,10);
 
-		document.getElementById('existenciaMensaje').innerHTML = "";
-		document.getElementById('precioMensaje').innerHTML = "";
-		document.getElementById('descripcionMensaje').innerHTML = "";
+		document.getElementById('existenciaMensaje').innerHTML = '';
+		document.getElementById('precioMensaje').innerHTML = '';
+		document.getElementById('descripcionMensaje').innerHTML = '';
 
 		if(descripcion.length>0){
 			if(parseFloat(precio)>0){
 				if(parseInt(existencia,10)>0 || (idProducto!=null && Number.isInteger(idProducto))){
 
 					var data = {
-						"descripcion" : descripcion,
-						"precio" : precio
+						'descripcion' : descripcion,
+						'precio' : precio
 					};
 
 					//Se determina la ruta y el metodo dependiendo si se quiere agregar o modificar
 					var ruta = 'http://localhost:4300/api/productos' + ((idProducto!=null && Number.isInteger(idProducto))?('/'+idProducto):'');
-					var metodo = ((idProducto!=null && Number.isInteger(idProducto))?"PUT":'POST');
+					var metodo = ((idProducto!=null && Number.isInteger(idProducto))?'PUT':'POST');
 						
 
 			    	fetch(ruta, {
@@ -240,24 +238,24 @@ class Productos extends Component {
 				      });
 
 			    }else{
-		    		document.getElementById('existenciaMensaje').innerHTML = "La existencia incial debe ser mayor a 0.";
+		    		document.getElementById('existenciaMensaje').innerHTML = 'La existencia incial debe ser mayor a 0.';
 		    	}
 		    }else{
-	    		document.getElementById('precioMensaje').innerHTML = "Debe escribir un precio.";
+	    		document.getElementById('precioMensaje').innerHTML = 'Debe escribir un precio.';
 	    	}
 
 	    }else{
-	    	document.getElementById('descripcionMensaje').innerHTML = "Debe escribir una descripción.";
+	    	document.getElementById('descripcionMensaje').innerHTML = 'Debe escribir una descripción.';
 	    }
 
 	}
 
 	listaEntradas = () => (
 	<div>
-		<div className="modal-body">		        
+		<div className='modal-body'>		        
 			<BootstrapTable
-			  classes="table-sm"
-			  keyField="id_entrada"
+			  classes='table-sm'
+			  keyField='id_entrada'
 			  data={ this.state.entradas  }
 			  columns={ this.columnsEntradas }
 			  striped
@@ -266,28 +264,24 @@ class Productos extends Component {
 			  pagination={ paginationFactory(this.options) }
 			  filter={ filterFactory() }/>
 		</div>
-		<div className="modal-footer">
-			<button type="button" className="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+		<div className='modal-footer'>
+			<button type='button' className='btn btn-secondary' data-dismiss='modal' id='cerrar'>Cerrar</button>
 		</div>	
 	</div>
 	);
 
 	eliminarProducto (row){
-		if(window.confirm('Confirma que desea eliminar al producto '+row.descripcion+'?')){
-
-
-			
+		if(window.confirm('Confirma que desea eliminar al producto '+row.descripcion+'?')) {
 
 			fetch('http://localhost:4300/api/productos/'+row.id_producto, {
-	    	    method: 'DELETE',
-	    	    headers: {
-	    	        'Content-Type': 'application/json'
-	    	    }
-	    	}).then(res => {
-	    		this.obtenerProductos();
-	    	    return res;
-	    	}).catch(err => err); 
-
+				method: 'DELETE',
+				headers: {
+						'Content-Type': 'application/json'
+				}
+			}).then(res => {
+				this.obtenerProductos();
+				return res;
+			}).catch(err => err);
 
 		}
 	}
@@ -298,15 +292,16 @@ class Productos extends Component {
 	    	contenido: this.formulario.bind(this)
 	    },
 		() => {
-			document.getElementById('titulo_modal').innerHTML = "Agregar Producto";
-		    document.getElementById('id_producto').value = "";
-			document.getElementById('descripcion').value = "";
-			document.getElementById('precio').value = "";
-			document.getElementById('existencia').value = "";
+			this.setState({ tituloModal: 'Agregar Producto' });
 
-			document.getElementById('existenciaMensaje').innerHTML = "";
-			document.getElementById('precioMensaje').innerHTML = "";
-			document.getElementById('descripcionMensaje').innerHTML = "";
+		  document.getElementById('id_producto').value = '';
+			document.getElementById('descripcion').value = '';
+			document.getElementById('precio').value = '';
+			document.getElementById('existencia').value = '';
+
+			document.getElementById('existenciaMensaje').innerHTML = '';
+			document.getElementById('precioMensaje').innerHTML = '';
+			document.getElementById('descripcionMensaje').innerHTML = '';
 		});
 	}
 
@@ -316,15 +311,16 @@ class Productos extends Component {
 	    	contenido: this.formulario.bind(this)
 	    },
 		() => {
-			document.getElementById('titulo_modal').innerHTML = "Modificar Producto";
+			this.setState({ tituloModal: 'Modificar Producto' });
+
 			document.getElementById('id_producto').value = row.id_producto;
 			document.getElementById('descripcion').value = row.descripcion;
 			document.getElementById('precio').value = row.precio;
 			document.getElementById('existencia').value = row.existencia;
 
-			document.getElementById('existenciaMensaje').innerHTML = "";
-			document.getElementById('precioMensaje').innerHTML = "";
-			document.getElementById('descripcionMensaje').innerHTML = "";
+			document.getElementById('existenciaMensaje').innerHTML = '';
+			document.getElementById('precioMensaje').innerHTML = '';
+			document.getElementById('descripcionMensaje').innerHTML = '';
 		});
 	}
 
@@ -332,8 +328,8 @@ class Productos extends Component {
 		this.setState({
 	    	contenido: this.listaEntradas.bind(this)
 	    },
-	    () => {
-			document.getElementById('titulo_modal').innerHTML = "Entradas del Producto al Inventario";
+	    () => {		
+			this.setState({ tituloModal: 'Entradas del Producto al Inventario' });
 			this.obtenerEntradas(row.id_producto);
 		});
 	}
@@ -342,27 +338,27 @@ class Productos extends Component {
 
 
 		return (
-			<div className="App">
-				<header className="App-header">
+			<div className='App'>
+				<header className='App-header'>
 
 				</header>
-				<div className="App-intro">
+				<div className='App-intro'>
 
-					<main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<main role='main' className='col-md-9 ml-sm-auto col-lg-10 pt-3 px-4'>
 
-						<div className="border-bottom">
+						<div className='border-bottom'>
 							<h1>Productos</h1>
 						</div>
 
 						<br/>
 
-						<button type="button" className="btn btn-secondary" data-toggle="modal" data-target="#ventanaModal" onClick={(e) => this.cargarAgregarProducto(e)}><i className="fa fa-plus"></i>&nbsp;Agregar Producto</button>
+						<button type='button' className='btn btn-secondary' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarAgregarProducto(e)}><i className='fa fa-plus'></i>&nbsp;Agregar Producto</button>
 
 						<br/><br/>
 
 						<BootstrapTable
-						  classes="table-sm"
-						  keyField="id_producto"
+						  classes='table-sm'
+						  keyField='id_producto'
 						  data={ this.state.productos  }
 						  columns={ this.columns }
 						  striped
@@ -373,7 +369,7 @@ class Productos extends Component {
 
 					</main>
 
-					<Modal contenido={this.state.contenido}/>
+					<Modal contenido={this.state.contenido} tituloModal={this.state.tituloModal}/>
 
 				</div>
 			</div>
