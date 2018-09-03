@@ -10,13 +10,13 @@ class Clientes extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state = { 
-			clientes: [], 
-			ventasCliente: [], 
-			contenido : () => {
+		this.state = {
+			clientes: [],
+			ventasCliente: [],
+			contenido: () => {
 			},
 			tituloModal: '',
-			idCliente: '', 
+			idCliente: '',
 			nombre: '',
 			nombreMensaje: ''
 		}
@@ -30,49 +30,49 @@ class Clientes extends Component {
 		this.cargarAgregarCliente = this.cargarAgregarCliente.bind(this);
 		this.cargarModificarCliente = this.cargarModificarCliente.bind(this);
 		this.cargarVentasCliente = this.cargarVentasCliente.bind(this);
-		
-  }
 
-  componentWillMount() {
+	}
+
+	componentWillMount() {
 		this.obtenerClientes();
 	}
 
-  columns = [{
-	  dataField: 'id_cliente',
-	  text: 'ID Cliente',
-	  filter: textFilter({
-	    placeholder: 'Buscar por ID...',
-	  })
+	columns = [{
+		dataField: 'id_cliente',
+		text: 'ID Cliente',
+		filter: textFilter({
+			placeholder: 'Buscar por ID...',
+		})
 	}, {
-	  dataField: 'nombre',
-	  text: 'Nombre',
-	  filter: textFilter({
-	    placeholder: 'Buscar por Nombre...',
-	  })
+		dataField: 'nombre',
+		text: 'Nombre',
+		filter: textFilter({
+			placeholder: 'Buscar por Nombre...',
+		})
 	}, {
 		dataField: '',
-			text: 'Opciones',
-			formatter: (cell, row) => {
-				return (
-					<div>
-						<button type='button' className='btn btn-secondary btn-sm' alt='Modificar' title='Modificar' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarModificarCliente(row, e)}><i className='fa fa-edit'></i></button>&nbsp;
+		text: 'Opciones',
+		formatter: (cell, row) => {
+			return (
+				<div>
+					<button type='button' className='btn btn-secondary btn-sm' alt='Modificar' title='Modificar' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarModificarCliente(row, e)}><i className='fa fa-edit'></i></button>&nbsp;
 						<button type='button' className='btn btn-secondary btn-sm' alt='Eliminar' title='Eliminar' onClick={(e) => this.eliminarCliente(row, e)}><i className='fa fa-trash' ></i></button>&nbsp;
 						<button type='button' className='btn btn-secondary btn-sm' alt='Ver Ventas al Cliente' title='Ver Ventas al Cliente' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarVentasCliente(row, e)}><i className='fa fa-list-alt'></i></button>&nbsp;
 					</div>
-				);
-			}
+			);
 		}
+	}
 	];
 
 	columnsVentas = [{
-	  dataField: 'id_venta',
-	  text: 'ID Venta'
+		dataField: 'id_venta',
+		text: 'ID Venta'
 	}, {
-	  dataField: 'fecha',
-	  text: 'Fecha'
-	},{
-	  dataField: 'total_general',
-	  text: 'Total General'
+		dataField: 'fecha',
+		text: 'Fecha'
+	}, {
+		dataField: 'total_general',
+		text: 'Total General'
 	}];
 
 	options = {
@@ -91,11 +91,11 @@ class Clientes extends Component {
 		firstPageTitle: 'Página siguiente',
 		lastPageTitle: 'Última página',
 		sizePerPageList: [{
-		text: '10', value: 10
+			text: '10', value: 10
 		}, {
-		text: '20', value: 20
+			text: '20', value: 20
 		}, {
-		text: 'Todos', value: 50
+			text: 'Todos', value: 50
 		}] // A numeric array is also available. the purpose of above example is custom the text
 	}
 
@@ -122,14 +122,14 @@ class Clientes extends Component {
 
 	formulario = () => (
 		<div>
-			<div className='modal-body'>		        
+			<div className='modal-body'>
 				<form>
-			
+
 					<div className='form-group row'>
-						<input type='hidden' value={this.state.idCliente}/>
+						<input type='hidden' value={this.state.idCliente} />
 						<label htmlFor='nombre' className='col-sm-2 col-form-label'>Nombre</label>
 						<div className='col-sm-10'>
-							<input type='text' value={this.state.nombre || ''} aria-describedby='Nombre Cliente' placeholder='Nombre Cliente' maxLength='200' size='40' onChange={e => this.setState({ nombre: e.target.value })}/>
+							<input type='text' value={this.state.nombre || ''} aria-describedby='Nombre Cliente' placeholder='Nombre Cliente' maxLength='200' size='40' onChange={e => this.setState({ nombre: e.target.value })} />
 							<small className='form-text text-danger'>{this.state.nombreMensaje}</small>
 						</div>
 					</div>
@@ -139,13 +139,13 @@ class Clientes extends Component {
 			<div className='modal-footer'>
 				<button type='button' className='btn btn-primary' onClick={this.guardarCliente}>Guardar</button>
 				<button type='button' className='btn btn-secondary' data-dismiss='modal' id='cerrar'>Cancelar</button>
-			</div>	
+			</div>
 		</div>
 	);
 
 	listaVentas = () => (
 		<div>
-			<div className='modal-body'>		        
+			<div className='modal-body'>
 				<BootstrapTable
 					classes='table-sm'
 					keyField='id_venta'
@@ -155,11 +155,11 @@ class Clientes extends Component {
 					hover
 					condensed
 					pagination={paginationFactory(this.options)}
-					filter={filterFactory()}/>
+					filter={filterFactory()} />
 			</div>
 			<div className='modal-footer'>
 				<button type='button' className='btn btn-secondary' data-dismiss='modal' id='cerrar'>Cerrar</button>
-			</div>	
+			</div>
 		</div>
 	);
 
@@ -170,10 +170,10 @@ class Clientes extends Component {
 
 		this.setState({ nombreMensaje: '' });
 
-		if(nombre.length > 0) {
+		if (nombre.length > 0) {
 
 			const data = {
-				'nombre' : nombre
+				'nombre': nombre
 			};
 
 			//Se determina la ruta y el metodo dependiendo si se quiere agregar o modificar
@@ -190,7 +190,7 @@ class Clientes extends Component {
 				document.getElementById('cerrar').click();
 				this.obtenerClientes();
 				return res;
-			}).catch(err => err); 
+			}).catch(err => err);
 
 		} else {
 			this.setState({ nombreMensaje: 'Debe escribir un nombre.' });
@@ -199,58 +199,58 @@ class Clientes extends Component {
 	}
 
 	eliminarCliente = (row) => {
-		if(window.confirm('Confirma que desea eliminar al cliente ' + row.nombre + '?')){
+		if (window.confirm('Confirma que desea eliminar al cliente ' + row.nombre + '?')) {
 			fetch(`http://localhost:4300/api/clientes/${row.id_cliente}`, {
 				method: 'DELETE',
 				headers: {
-						'Content-Type': 'application/json'
+					'Content-Type': 'application/json'
 				}
 			}).then(res => {
 				this.obtenerClientes();
-					return res;
-			}).catch(err => err); 
+				return res;
+			}).catch(err => err);
 		}
 	}
 
 	cargarAgregarCliente = () => {
 		this.setState({
-	    	contenido: this.formulario
-	    },
-		() => {
+			contenido: this.formulario
+		},
+			() => {
 
-			this.setState({
-				tituloModal: 'Agregar Cliente',
-				idCliente: '', 
-				nombre: '',
-				nombreMensaje: ''
+				this.setState({
+					tituloModal: 'Agregar Cliente',
+					idCliente: '',
+					nombre: '',
+					nombreMensaje: ''
+				});
+
 			});
-
-		});
 	}
 
 	cargarModificarCliente = (row) => {
 		this.setState({
-	    	contenido: this.formulario
-	    },
+			contenido: this.formulario
+		},
 			() => {
 
-			this.setState({ 
-				tituloModal: 'Modificar Cliente',
-				idCliente: row.id_cliente,
-				nombre: row.nombre,
-				nombreMensaje: '' 
+				this.setState({
+					tituloModal: 'Modificar Cliente',
+					idCliente: row.id_cliente,
+					nombre: row.nombre,
+					nombreMensaje: ''
+				});
 			});
-		});
 	}
 
 	cargarVentasCliente = (row) => {
 		this.setState({
-	    	contenido: this.listaVentas
-	    },
-	    () => {
+			contenido: this.listaVentas
+		},
+			() => {
 				this.setState({ tituloModal: `Ventas al Cliente ${row.nombre}` });
 				this.obtenerVentasCliente(row.id_cliente);
-		});
+			});
 	}
 
 	render() {
@@ -268,27 +268,27 @@ class Clientes extends Component {
 							<h1>Clientes</h1>
 						</div>
 
-						<br/>
+						<br />
 
 						<button type='button' className='btn btn-secondary' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarAgregarCliente(e)}><i className='fa fa-plus'></i>&nbsp;Agregar Cliente</button>
 
-						<br/><br/>
+						<br /><br />
 
 						<BootstrapTable
-						  classes='table-sm'
-						  keyField='id_cliente'
-						  data={this.state.clientes}
-						  columns={this.columns}
-						  striped
-						  hover
-						  condensed
-						  pagination={paginationFactory(this.options)}
-						  filter={filterFactory()}
+							classes='table-sm'
+							keyField='id_cliente'
+							data={this.state.clientes}
+							columns={this.columns}
+							striped
+							hover
+							condensed
+							pagination={paginationFactory(this.options)}
+							filter={filterFactory()}
 						/>
 
 					</main>
 
-					<Modal contenido={this.state.contenido} tituloModal={this.state.tituloModal}/>
+					<Modal contenido={this.state.contenido} tituloModal={this.state.tituloModal} />
 
 				</div>
 			</div>
