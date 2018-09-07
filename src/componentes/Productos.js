@@ -66,8 +66,8 @@ class Productos extends Component {
       return (
         <div>
           <button type='button' className='btn btn-secondary btn-sm' alt='Modificar' title='Modificar' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarModificarProducto(row, e)}><i className='fa fa-edit'></i></button>&nbsp;
-        <button type='button' className='btn btn-secondary btn-sm' alt='Eliminar' title='Eliminar' onClick={(e) => this.eliminarProducto(row, e)}><i className='fa fa-trash' ></i></button>&nbsp;
-        <button type='button' className='btn btn-secondary btn-sm' alt='Ver Entradas a Inventario' title='Ver Entradas a Inventario' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarEntradasProducto(row, e)}><i className='fa fa-list-alt'></i></button>
+          <button type='button' className='btn btn-secondary btn-sm' alt='Eliminar' title='Eliminar' onClick={(e) => this.eliminarProducto(row, e)}><i className='fa fa-trash' ></i></button>&nbsp;
+          <button type='button' className='btn btn-secondary btn-sm' alt='Ver Entradas a Inventario' title='Ver Entradas a Inventario' data-toggle='modal' data-target='#ventanaModal' onClick={(e) => this.cargarEntradasProducto(row, e)}><i className='fa fa-list-alt'></i></button>
         </div>
       );
     }
@@ -379,7 +379,8 @@ class Productos extends Component {
               hover
               condensed
               pagination={ paginationFactory(this.options) }
-              filter={ filterFactory() }/>
+              filter={ filterFactory() }
+            />
 
           </main>
 
