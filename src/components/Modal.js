@@ -10,7 +10,7 @@ class Modal extends Component {
 				</header>
 				<div className='App-intro'>
 
-					<div className='modal' tabIndex='-1' role='dialog' id='ventanaModal'>
+					<div className='modal' tabIndex='-1' role='dialog' id='modalWindow'>
 					  <div className='modal-dialog modal-lg' role='document'>
 					    <div className='modal-content'>
 
@@ -21,7 +21,7 @@ class Modal extends Component {
 					        </button>
 					      </div>
 					      
-					      {this.props.contenido()}
+					      {this.props.content()}
 
 					    </div>
 					  </div>

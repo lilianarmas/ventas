@@ -6,25 +6,25 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import App from './App';
-import Menu from './componentes/Menu';
-import Clientes from './componentes/Clientes';
-import Productos from './componentes/Productos';
-import Ventas from './componentes/Ventas';
+import Menu from './components/Menu';
+import Clients from './components/Clients';
+import Products from './components/Products';
+import Sales from './components/Sales';
 
 ReactDOM.render(
-	<Router>
-		<div>
-			<Menu/>
+    <Router>
+        <div>
+            <Menu/>
 
-			<Route exact path="/" component={App} />
-			<Route exact path="/inicio" component={App} />
-			<Route path="/clientes" component={Clientes} />
-			<Route path="/productos" component={Productos} />
-			<Route path="/ventas" component={Ventas} />
+            <Route exact path="/" component={App} />
+            <Route exact path="/home" component={App} />
+            <Route path="/clients" component={Clients} />
+            <Route path="/products" component={Products} />
+            <Route path="/sales" component={Sales} />
 
-		</div>
-	</Router>,
-  document.getElementById('root')
+        </div>
+    </Router>,
+    document.getElementById('root')
 )
 
 registerServiceWorker();
